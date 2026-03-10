@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Dashboard</title>
+</head>
+<body>
+    <!-- 1. Basic Variables -->
+    <h1>{{ library_name }}</h1>
+    <p>Librarian: {{ librarian }}</p>
+    <p>Today's Date: {{ current_date|date:'l, d F Y' }}</p>
+    <h3>{{ featured_message }}</h3>
+
+    <!-- 2. Conditional Greeting -->
+    <p>{% if is_weekend %}
+    Welcome to a lovely {{ current_date|date:'l' }} at the library!
+    {% else %}
+    Welcome to a lovely {{ current_date|date:'l' }} at the library!
+    {% endif %}</p>
+
+    <!-- 3. Books List -->
+    <h2>Books Collection</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0;">
+        {% for book in books %}
+        ------------------------------------------------------------------------------------------------
+        <li>
+            {{ book.title|upper }} by {{ book.author }} ({{ book.publication_year }})
+        </li>
+        <li>ISBN: {{ book.isbn }}</li>
+        <li>Category: {{ book.category }}</li>
+        <li> Price: ₦{{ book.price }}</li>
+        <li> 
+            {% if book.available_copies > 0 %}
+            Available ({{ book.available_copies }} copies)
+            {% else %}
+            Out of Stock
+            {% endif %}
+        </li>
+        {% if book.is_featured %}
+        <li><b>FEATURED</b></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <!-- 4. Library Statistics -->
+    <h2>Library Statistics</h2>
+    <ul style="list-style-type: none; margin: 0; padding: 0;">
+        {% for key, stats in library_stats.items %}
+        <li>- {{ key|title }}: {{ stats }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
