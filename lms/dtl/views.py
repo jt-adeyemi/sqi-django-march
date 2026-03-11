@@ -7,7 +7,7 @@ def dtl_syntax_demo(request):
         'name': 'Joshua',
         'age': 24,
         'courses': ['Python', 'Django', 'SQL', 'HTML/CSS'],
-        'is_logged_in': False,
+        'is_logged_in': True,
         'no_of_messages': 3,
         'students_grades': {'Pelumi': 'A', "Olumide": "B", "Joshua": "C", "Francis": "D", "Adil": "E"},
         'library': [
